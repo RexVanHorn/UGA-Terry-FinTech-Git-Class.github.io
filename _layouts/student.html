@@ -19,7 +19,11 @@
 
   <div class="row">
     {% if page.headshot and page.headshot != "" %}
-      <img class="avatar" src="{{ page.headshot }}" alt="{{ page.name }} headshot">
+      {% if page.headshot contains "://" %}
+        <img class="avatar" src="{{ page.headshot }}" alt="{{ page.name }} headshot">
+      {% else %}
+        <img class="avatar" src="{{ page.headshot | relative_url }}" alt="{{ page.name }} headshot">
+      {% endif %}
     {% endif %}
     <div>
       <h1>{{ page.name }}</h1>
